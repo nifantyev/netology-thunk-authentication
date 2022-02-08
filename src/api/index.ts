@@ -32,10 +32,12 @@ export function login(
       if (!authResponse.ok) {
         if (authResponse.status === 400) {
           const { message } = await authResponse.json();
-          setAuthError(message);
+          dispatch(setAuthError(message));
         }
         throw new Error(authResponse.statusText);
       }
+
+      dispatch(setAuthError(null));
 
       const { token } = await authResponse.json();
 
@@ -56,7 +58,7 @@ export function login(
 
       dispatch(setAuthInfo(token, profile));
     } catch (e) {
-      setAuthLoadingStatus('error');
+      dispatch(setAuthLoadingStatus('error'));
     }
   };
 }
