@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { clearAuthInfo } from '../actions/actionCreators';
+import { getNews } from '../api';
 import Logout from '../components/Logout';
 import NewsItem from '../components/NewsItem';
 import { useAppDispatch, useAppSelector } from '../hooks';
@@ -9,8 +10,19 @@ const News = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const token = useAppSelector((store) => store.auth.token);
   const loadingStatus = useAppSelector((store) => store.news.loadingStatus);
   const news = useAppSelector((store) => store.news.news);
+
+  useEffect(() => {
+    dispatch(getNews());
+  }, [dispatch, navigate]);
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/');
+    }
+  }, [token, navigate]);
 
   const onLogout = () => {
     dispatch(clearAuthInfo());
