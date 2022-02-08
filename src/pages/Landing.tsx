@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { login as authenticate } from '../api';
+import { setAuthError } from '../actions/actionCreators';
 
 const Landing = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { error: authError } = useAppSelector((store) => store.auth);
+  const {
+    token,
+    profile,
+    error: authError,
+  } = useAppSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (token && profile) {
+      navigate('/news');
+    }
+  }, [token, profile, navigate]);
+
+  useEffect(() => {
+    if (authError) {
+      window.alert(authError);
+      dispatch(setAuthError(null));
+    }
+  }, [authError, dispatch]);
 
   const onLogin = async (login: string, password: string) => {
     await dispatch(authenticate(login, password));
-    if (!authError) {
-      navigate('/news');
-    } else {
-      window.alert(authError);
-    }
   };
 
   return (
