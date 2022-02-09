@@ -2,14 +2,13 @@ import { AppThunk } from '../store';
 import { NewsModel, ProfileModel } from '../models';
 import {
   clearAuthInfo,
-  putNewsList,
   setAuthError,
   setAuthInfo,
   setAuthLoadingStatus,
-  setNewsListLoadingStatus,
-} from '../actions/actionCreators';
+} from '../reducers/authReducer';
+import { putNewsList, setNewsListLoadingStatus } from '../reducers/newsReducer';
 
-export function login(
+export function authenticate(
   login: string,
   password: string
 ): AppThunk<Promise<void>> {
@@ -56,7 +55,7 @@ export function login(
 
       const profile = (await profileResponse.json()) as ProfileModel;
 
-      dispatch(setAuthInfo(token, profile));
+      dispatch(setAuthInfo({ token, profile }));
     } catch (e) {
       dispatch(setAuthLoadingStatus('error'));
     }

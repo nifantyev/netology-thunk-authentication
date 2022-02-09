@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { clearAuthInfo } from '../actions/actionCreators';
+import { clearAuthInfo } from '../reducers/authReducer';
 import { getNews } from '../api';
 import Logout from '../components/Logout';
 import NewsItem from '../components/NewsItem';

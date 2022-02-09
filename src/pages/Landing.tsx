@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { login as authenticate } from '../api';
-import { setAuthError } from '../actions/actionCreators';
+import { authenticate } from '../api';
+import { setAuthError } from '../reducers/authReducer';
 
 const Landing = () => {
   const dispatch = useAppDispatch();
