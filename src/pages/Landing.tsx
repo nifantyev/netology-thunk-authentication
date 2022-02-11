@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { authenticate } from '../api';
@@ -7,18 +6,7 @@ import { setAuthError } from '../reducers/authReducer';
 
 const Landing = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const {
-    token,
-    profile,
-    error: authError,
-  } = useAppSelector((store) => store.auth);
-
-  useEffect(() => {
-    if (token && profile) {
-      navigate('/news');
-    }
-  }, [token, profile, navigate]);
+  const { error: authError } = useAppSelector((store) => store.auth);
 
   useEffect(() => {
     if (authError) {

@@ -10,7 +10,6 @@ const News = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const token = useAppSelector((store) => store.auth.token);
   const loadingStatus = useAppSelector((store) => store.news.loadingStatus);
   const news = useAppSelector((store) => store.news.news);
 
@@ -18,15 +17,8 @@ const News = () => {
     dispatch(getNews());
   }, [dispatch, navigate]);
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/');
-    }
-  }, [token, navigate]);
-
   const onLogout = () => {
     dispatch(clearAuthInfo());
-    navigate('/');
   };
 
   return (
