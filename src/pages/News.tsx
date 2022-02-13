@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { clearAuthInfo } from '../reducers/authReducer';
-import { getNews } from '../api';
+import { getNews } from '../reducers/newsReducer';
 import Logout from '../components/Logout';
 import NewsItem from '../components/NewsItem';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
 const News = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const loadingStatus = useAppSelector((store) => store.news.loadingStatus);
   const news = useAppSelector((store) => store.news.news);
 
   useEffect(() => {
     dispatch(getNews());
-  }, [dispatch, navigate]);
+  }, [dispatch]);
 
   const onLogout = () => {
     dispatch(clearAuthInfo());
