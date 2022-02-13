@@ -84,7 +84,7 @@ export function getNews(): AppThunk<Promise<void>> {
         }
         const data = (await response.json()) as NewsModel[];
         dispatch(putNewsList(data));
-        dispatch(setNewsListLoadingStatus('success'));
+        dispatch(setNewsListLoadingStatus('idle'));
       }
     } catch (e) {
       dispatch(setNewsListLoadingStatus('error'));

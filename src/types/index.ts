@@ -1,1 +1,1 @@
-export type AsyncOperationStatus = 'idle' | 'pending' | 'success' | 'error';
+export type AsyncOperationStatus = 'idle' | 'pending' | 'error';

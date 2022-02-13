@@ -38,7 +38,7 @@ const News = () => {
           </div>
         </div>
       )}
-      {loadingStatus === 'success' && (
+      {news && news.length > 0 && (
         <div className="container">
           <div className="row">
             {news.map((o) => (
