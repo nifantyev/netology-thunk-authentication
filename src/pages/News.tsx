@@ -3,7 +3,7 @@ import { clearAuthInfo } from '../reducers/authReducer';
 import { getNews } from '../reducers/newsReducer';
 import Logout from '../components/Logout';
 import NewsItem from '../components/NewsItem';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../store';
 
 const News = () => {
   const dispatch = useAppDispatch();

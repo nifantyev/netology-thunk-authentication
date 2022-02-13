@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from '../components/LoginForm';
-import { useAppDispatch } from '../hooks';
+import { useAppDispatch } from '../store';
 import { authenticate } from '../reducers/authReducer';
 
 const Landing = () => {

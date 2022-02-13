@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '../hooks';
+import { useAppSelector } from '../store';
 
 type LogoutProps = {
   onLogout: () => void;
